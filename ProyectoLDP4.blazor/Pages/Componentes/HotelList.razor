@@ -1,0 +1,29 @@
+@page "/hotels"
+
+<h3>Lista de Hoteles</h3>
+
+@foreach (var hotel in Hoteles)
+{
+    <div>
+        <h5>@hotel.Nombre</h5>
+        <p>@hotel.Descripcion</p>
+        <button @onclick="() => ReservarHotel(hotel)">Reservar</button>
+    </div>
+}
+
+@code {
+    List<Hotel> Hoteles = new List<Hotel>
+    {
+        new Hotel { Id = 1, Nombre = "Hotel A", Descripcion = "Un hermoso hotel en la playa" },
+        new Hotel { Id = 2, Nombre = "Hotel B", Descripcion = "Ubicado en el centro de la ciudad" },
+        // Agrega más hoteles según sea necesario
+    };
+
+    [Parameter]
+    public EventCallback<Hotel> OnReservarHotel { get; set; }
+
+    void ReservarHotel(Hotel hotel)
+    {
+        OnReservarHotel.InvokeAsync(hotel);
+    }
+}
