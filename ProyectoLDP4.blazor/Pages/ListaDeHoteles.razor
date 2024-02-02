@@ -1,0 +1,91 @@
+﻿
+@page "/hotels"
+@using ProyectoLDP4.blazor.Data.Models
+<h3>Lista de Hoteles</h3>
+<style>
+  
+    .lista-hoteles {
+        
+        margin: 20px; 
+    }
+
+        .lista-hoteles h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .lista-hoteles div {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        .lista-hoteles h5 {
+            color: #007bff;
+        }
+
+        .lista-hoteles p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .lista-hoteles button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+            .lista-hoteles button:hover {
+                background-color: #0056b3;
+            }
+
+        .lista-hoteles a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .lista-hoteles a:hover {
+                text-decoration: underline;
+            }
+
+</style>
+
+
+<div class="lista-hoteles">
+
+
+    @foreach (var hotel in Hoteles)
+    {
+        <div>
+            <h5>@hotel.Nombre</h5>
+            <p>@hotel.Descripcion</p>
+            <button @onclick="() => ReservarHotel(hotel)">Reservar</button>
+            <a href="PaginaReservaciones">Ver Reserva!</a>
+        </div>
+    }
+</div>
+
+@code {
+    List<Hotel> Hoteles = new List<Hotel>
+    {
+        new Hotel { Id = 1, Nombre = "Hotel A", Descripcion = "Un hermoso hotel en la playa" },
+        new Hotel { Id = 2, Nombre = "Hotel B", Descripcion = "Ubicado en el centro de la ciudad" },
+        // Agrega más hoteles según sea necesario
+    };
+
+    [Parameter]
+    public EventCallback<Hotel> OnReservarHotel { get; set; }
+
+    void ReservarHotel(Hotel hotel)
+    {
+        OnReservarHotel.InvokeAsync(hotel);
+    }
+}
+

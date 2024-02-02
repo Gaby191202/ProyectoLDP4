@@ -1,0 +1,54 @@
+﻿@page "/PaginaReservaciones"
+@using ProyectoLDP4.blazor.Data.Models
+<h3>Formulario de Reserva</h3>
+
+<div class="formulario-reserva">
+    
+
+    @if (HotelSeleccionado != null)
+    {
+        <h4>@HotelSeleccionado.Nombre</h4>
+        <p>@HotelSeleccionado.Descripcion</p>
+
+        <form>
+            <label>Nombre del Cliente:</label>
+            <input @bind="NombreCliente" />
+
+            <label>Fecha de Check-In:</label>
+            <input type="date" @bind="FechaCheckIn" />
+
+            <button @onclick="RealizarReserva">Confirmar Reserva</button>
+        </form>
+    }
+    
+    else
+    {
+        <p>Selecciona un hotel antes de reservar!.</p>
+        <p>
+            <a href="hotels">Ir a la página de Hoteles</a>
+        </p>
+    }
+    
+</div>
+
+@code {
+    Hotel HotelSeleccionado;
+    string NombreCliente;
+    DateTime FechaCheckIn;
+
+    [Parameter]
+    public EventCallback<Hotel> OnConfirmarReserva { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Lógica de inicialización si es necesario
+    }
+
+    void RealizarReserva()
+    {
+        // Lógica para almacenar la reserva en la base de datos
+        // Puedes llamar a un servicio, por ejemplo, para manejar la lógica de reserva
+
+        OnConfirmarReserva.InvokeAsync(HotelSeleccionado);
+    }
+}

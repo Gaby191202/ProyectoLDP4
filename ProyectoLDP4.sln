@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoLDP4.blazor", "ProyectoLDP4.blazor\ProyectoLDP4.blazor.csproj", "{F0AC3D2F-9857-434C-B63A-66A042839A87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoLDP4.blazor", "ProyectoLDP4.blazor\ProyectoLDP4.blazor.csproj", "{F0AC3D2F-9857-434C-B63A-66A042839A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
